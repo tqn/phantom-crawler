@@ -1,7 +1,7 @@
 {
   "name": "phantom-crawler",
   "version": "1.0.0",
-  "description": "Crawls pages like a real browser",
+  "description": "Lightweight crawler that works like a real browser",
   "main": "bin/crawler",
   "private": true,
   "scripts": {
@@ -19,5 +19,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tqn/phantom-crawler"
+  },
+  "bugs": {
+    "url": "https://github.com/tqn/phantom-crawler/issues",
+    "email": "tej.q.nair@gmail.com"
   }
 }
