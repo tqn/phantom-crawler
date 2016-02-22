@@ -1,5 +1,5 @@
 {
-  "name": "crawler",
+  "name": "phantom-crawler",
   "version": "0.0.0",
   "description": "Crawls pages like a real browser",
   "main": "src/crawler.ics",
