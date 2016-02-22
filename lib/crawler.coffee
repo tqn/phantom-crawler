@@ -1,40 +1,35 @@
 Promise = require 'bluebird'
 
-exports = module.exports = class Crawler
+module.exports = class Crawler
 
   constructor: (@options = {}) ->
-    @queue = options.queue ? []
+    @queue = @options.queue ? []
+    # Promise for phantom bridge
+    @phantom = Promise.promisify(require('node-phantom-simple').create)
+      path: require('phantomjs').path
+    .then Promise.promisifyAll
 
-  crawl: ->
-    # Array of promises for phantomjs pages
-    pages = (fetch @queue.unshift() while @queue.length isnt 0)
-    return pages
+  # Array of promises for phantomjs pages
+  crawl: -> @fetch @queue.shift() while @queue.length isnt 0
 
   # Get a page
   fetch: Promise.coroutine (url) ->
+    phantom = yield @phantom
     # create page
-    page = yield phantom.createPageAsync()
-    # open page
-    try
-      # page settings
-      pageSet = Promise.promisify page.set
-      settings = []
-      if @options.XSSAuditingEnabled
-        settings.push pageSet 'settings.XSSAuditingEnabled', true
-      if @options.userAgent?
-        settings.push pageSet 'settings.userAgent', @options.userAgent
-      yield Promise.all settings
-      # open the url
-      yield new Promise (resolve, reject) ->
-        page.open url, (status) ->
-          if status == 'success' then resolve() else reject()
-      # Check for timeout
-      if (yield page.get 'url') == 'about:blank'
-        throw new Error "#{url} timed out"
-      # Return page
-      return page
-    finally page.close()
-
-  # Phantom instance
-  phantom: Promise.promisifyAll require('node-phantom-simple').create
-    path: require('phantomjs').path
+    page = Promise.promisifyAll (yield phantom.createPageAsync()),
+      suffix: 'Promise'
+    # page settings
+    settings = []
+    if @options.XSSAuditingEnabled
+      settings.push page.setPromise 'settings.XSSAuditingEnabled', true
+    if @options.userAgent?
+      settings.push page.setPromise 'settings.userAgent', @options.userAgent
+    yield Promise.all settings
+    # open the url
+    if (yield page.openPromise url) isnt 'success'
+      throw new Error "#{url} failed to open"
+    # Check for timeout
+    if (yield page.getPromise 'url') is 'about:blank'
+      throw new Error "#{url} timed out"
+    # Return page
+    return page
