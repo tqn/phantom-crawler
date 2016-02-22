@@ -1,6 +1,6 @@
 {
   "name": "phantom-crawler",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Crawls pages like a real browser",
   "main": "bin/crawler.js",
   "private": true,
