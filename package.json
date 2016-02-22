@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Crawls pages like a real browser",
   "main": "src/crawler.ics",
+  "private": true,
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register"
   },
