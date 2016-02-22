@@ -5,7 +5,8 @@
   "main": "bin/crawler.js",
   "private": true,
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register"
+    "test": "mocha --compilers coffee:coffee-script/register",
+    "preversion": "npm test"
   },
   "author": "Tej Qu Nair",
   "license": "MIT",
