@@ -1,7 +1,7 @@
 expect = require('chai').expect
 Promise = require 'bluebird'
 
-Crawler = require '../bin/crawler'
+Crawler = require '../'
 
 URL = 'https://www.google.com/'
 
