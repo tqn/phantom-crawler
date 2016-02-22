@@ -1,6 +1,6 @@
 {
   "name": "phantom-crawler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Lightweight crawler that works like a real browser",
   "main": "bin/crawler",
   "keywords": [
