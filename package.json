@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Lightweight crawler that works like a real browser",
   "main": "bin/crawler",
-  "private": true,
+  "keywords": ["crawler", "spider", "phantomjs", "simple", "fetch", "promise", "ajax"],
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register",
     "preversion": "npm test"
