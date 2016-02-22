@@ -9,7 +9,7 @@
 (Check unit tests for more details)
 
 ### coffeescript
-```coffee-script
+```coffeescript
 Crawler = require('phantom-crawler')
 # Can be initialized with optional options object
 crawler = new Crawler()
