@@ -2,7 +2,7 @@
   "name": "phantom-crawler",
   "version": "1.0.0",
   "description": "Crawls pages like a real browser",
-  "main": "bin/crawler.js",
+  "main": "bin/crawler",
   "private": true,
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register",
